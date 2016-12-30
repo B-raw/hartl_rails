@@ -12,7 +12,8 @@ class User < ApplicationRecord
                       uniqueness: { case_sensitive: false } })
 
   validates(:password, { length: { minimum: 6 },
-                         presence: true })
+                         presence: true,
+                         allow_nil: true })
 
   has_secure_password
 
@@ -45,7 +46,7 @@ class User < ApplicationRecord
   end
 end
 
-=begin
+=begin - COOKIE PATHWAY
   when user is created, there is no remember token
   when user logs in and a new session is created, "remember user" is called
   remember user calls user.remember + creates permanent cookies for 1) user_id (signed to secure) + remember_token
